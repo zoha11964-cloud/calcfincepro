@@ -1,3 +1,4 @@
+<!-- ==========第一段HEAD開頭【頭：HEAD全域配置、SEO、樣式CSS】========== -->
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
@@ -87,6 +88,14 @@
             font-size: 13px;
             margin: 15px 0;
             display: none;
+        }
+
+        /* 廣告樣式 不影響你網站 */
+        .native-ad-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 15px;
+            text-align: center;
         }
 
         header {
@@ -224,7 +233,7 @@
             background: #dbeafe;
             color: #2563eb;
             transform: translateY(-1px);
-            box-shadow: 0 3px 6px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0.12);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.12);
         }
         .cross-tool-icon {
             font-size: 15px;
@@ -613,7 +622,7 @@
 
         .related-tools {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
             max-width: 700px;
             margin: 0 auto;
@@ -800,6 +809,9 @@
         }
     </style>
 </head>
+<!-- ==========第一段HEAD結尾【HEAD全部完畢】========== -->
+
+<!-- ==========第二段BODY HTML開頭【頁面結構：導航、廣告位、計算器、內容FAQ、頁腳】========== -->
 <body>
 <header>
     <div class="container header-inner">
@@ -947,6 +959,13 @@
                 </div>
             </div>
         </div>
+
+        <!-- ===================== NATIVE 廣告 已插入 ===================== -->
+        <div class="native-ad-container">
+            <script async="async" data-cfasync="false" src="https://pl29619768.effectivecpmnetwork.com/cd744ff01eabb8a255ffc9c0082dd1b1/invoke.js"></script>
+            <div id="container-cd744ff01eabb8a255ffc9c0082dd1b1"></div>
+        </div>
+        <!-- ===================== NATIVE 廣告 結束 ===================== -->
 
         <div class="chart-wrap" aria-label="Investment balance growth line chart showing principal vs total balance with compound interest">
             <h3 class="chart-title">Investment Balance Growth Chart</h3>
@@ -1130,6 +1149,9 @@
   <a href="https://text.calcfincepro.com/">Text Tools</a>
   <a href="https://convert.calcfincepro.com/">Convert Tools</a>
 </div>
+<!-- ==========第二段BODY HTML結尾【頁面靜態HTML全部完畢】========== -->
+
+<!-- ==========第三段JS開頭【計算邏輯、圖表、按鈕、FAQ交互腳本】========== -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     let growthChart = null;
@@ -1166,7 +1188,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const years = Number(invYears.value)||0;
         const monthlyAdd = Number(monthDeposit.value)||0;
         const compoundTimes = Number(compFreq.value);
-        resultYears.textContent = years;
         const totalMonth = years*12;
         const totalPaid = P + (monthlyAdd*totalMonth);
         const annualRate = rate/100;
@@ -1187,6 +1208,7 @@ document.addEventListener('DOMContentLoaded', function() {
         totalContrib.textContent = formatCurrency(totalPaid);
         totalInterest.textContent = formatCurrency(interest);
         returnPct.textContent = pct+'%';
+        resultYears.textContent = years;
         updateChart();
     }
 
@@ -1238,65 +1260,35 @@ document.addEventListener('DOMContentLoaded', function() {
             type: 'line',
             data: {
                 labels: labels,
-                datasets: [
-                    {
-                        label: 'Total Balance',
-                        data: balanceData,
-                        borderColor: '#2563eb',
-                        backgroundColor: 'rgba(37,99,235,0.1)',
-                        fill: true,
-                        tension: 0.3,
-                        borderWidth: 2
-                    },
-                    {
-                        label: 'Total Contributions',
-                        data: principalData,
-                        borderColor: '#059669',
-                        backgroundColor: 'rgba(5,150,105,0.05)',
-                        fill: false,
-                        tension: 0.3,
-                        borderWidth: 1.5
-                    }
-                ]
+                datasets: [{
+                    label: 'Total Balance',
+                    data: balanceData,
+                    borderColor: '#2563eb',
+                    backgroundColor: 'rgba(37,99,235,0.1)',
+                    fill: true,
+                    tension: 0.3,
+                    borderWidth: 2
+                },{
+                    label: 'Total Contributions',
+                    data: principalData,
+                    borderColor: '#059669',
+                    backgroundColor: 'rgba(5,150,105,0.05)',
+                    fill: false,
+                    tension: 0.3,
+                    borderWidth: 1.5
+                }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                        labels: {
-                            boxWidth: 12,
-                            font: { size: 12 }
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            callback: function(value) {
-                                return '$' + value.toLocaleString();
-                            }
-                        }
-                    }
-                }
+                plugins: { legend: { position: 'top' } },
+                scales: { y: { beginAtZero: true } }
             }
         });
     }
 
     calcBtn.addEventListener('click', calculateTotal);
 
-    copyResult.addEventListener('click', function() {
-        const text = `Final Value: ${futureVal.textContent}\nTotal Contributions: ${totalContrib.textContent}\nTotal Interest: ${totalInterest.textContent}\nInterest Ratio: ${returnPct.textContent}`;
-        navigator.clipboard.writeText(text).then(() => {
-            const oldText = copyResult.innerHTML;
-            copyResult.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
-            setTimeout(() => { copyResult.innerHTML = oldText; }, 1500);
-        });
-    });
-
-    // 快捷填充按钮
     document.querySelectorAll('.quick-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const key = this.dataset.preset;
@@ -1306,42 +1298,39 @@ document.addEventListener('DOMContentLoaded', function() {
             intRate.value = cfg.rate;
             invYears.value = cfg.years;
             monthDeposit.value = cfg.monthly;
-            topHookLink.textContent = `<i class="fa-solid fa-lightbulb"></i> ${cfg.topText}`;
+            topHookLink.textContent = cfg.topText;
             topHookLink.href = cfg.link;
-            bottomHookLink.textContent = `<i class="fa-solid fa-book-open"></i> ${cfg.bottomText}`;
+            bottomHookLink.textContent = cfg.bottomText;
             bottomHookLink.href = cfg.link;
             calculateTotal();
         });
     });
 
-    // FAQ 展开收起
-    document.querySelectorAll('.faq-question').forEach(item => {
-        item.addEventListener('click', function() {
-            const answer = this.nextElementSibling;
-            const icon = this.querySelector('i');
-            const parent = this.closest('.faq-item');
-
-            // 关闭其他
-            document.querySelectorAll('.faq-question').forEach(q => {
-                q.classList.remove('active');
-                q.nextElementSibling.classList.remove('show');
-                q.querySelector('i').classList.replace('fa-chevron-up','fa-chevron-down');
-            });
-
-            // 切换当前
-            this.classList.toggle('active');
-            answer.classList.toggle('show');
-            if(answer.classList.contains('show')){
-                icon.classList.replace('fa-chevron-down','fa-chevron-up');
-            }else{
-                icon.classList.replace('fa-chevron-up','fa-chevron-down');
-            }
+    copyResult.addEventListener('click', function() {
+        const text = `Final Value: ${futureVal.textContent}\nTotal Contributions: ${totalContrib.textContent}\nTotal Interest: ${totalInterest.textContent}\nReturn Ratio: ${returnPct.textContent}`;
+        navigator.clipboard.writeText(text).then(() => {
+            alert('Result copied to clipboard!');
         });
     });
 
-    // 初始执行一次计算
+    document.querySelectorAll('.faq-question').forEach(item => {
+        item.addEventListener('click', function() {
+            const ans = this.nextElementSibling;
+            ans.classList.toggle('show');
+            this.querySelector('i').classList.toggle('fa-chevron-down');
+            this.querySelector('i').classList.toggle('fa-chevron-up');
+            this.classList.toggle('active');
+        });
+    });
+
     calculateTotal();
 });
 </script>
+
+<!-- ===================== POPUNDER 廣告 已插入 ===================== -->
+<script src="https://pl29619767.effectivecpmnetwork.com/03/d7/78/03d7784af424f8225565f57d71310574.js"></script>
+<!-- ===================== POPUNDER 結束 ===================== -->
+
+<!-- ==========第三段JS結尾【JS全部完畢】========== -->
 </body>
 </html>
