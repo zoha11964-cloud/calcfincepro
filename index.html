@@ -1152,39 +1152,34 @@ document.addEventListener('DOMContentLoaded', function() {
         const compoundTimes = Number(compFreq.value);
         const annualRate = rate / 100;
 
-        const labels = [];
+                const labels = [];
         const balanceData = [];
-        const principalData = []
-const labels = [];
-const balanceData = [];
-const principalData = [];
+        const principalData = [];
 
-for (let i = 0; i <= years; i++) {
-    labels.push(i + 'Y');
-    const totalMonths = i * 12;
-    const principal = P + monthlyAdd * totalMonths;
-    principalData.push(Math.round(principal));
+        for (let i = 0; i <= years; i++) {
+            labels.push(i + 'Y');
+            const totalMonths = i * 12;
+            const principal = P + monthlyAdd * totalMonths;
+            principalData.push(Math.round(principal));
 
-    let balance = P;
-    if (compoundTimes === 1) {
-        if (annualRate === 0) {
-            balance = principal;
-        } else {
-            balance = P * Math.pow(1 + annualRate, i) +
-                      monthlyAdd * 12 * (Math.pow(1 + annualRate, i) - 1) / annualRate;
+            let balance = P;
+            if (compoundTimes === 1) {
+                if (annualRate === 0) {
+                    balance = principal;
+                } else {
+                    balance = P * Math.pow(1 + annualRate, i) + monthlyAdd * 12 * (Math.pow(1 + annualRate, i) - 1) / annualRate;
+                }
+            } else {
+                const months = i * 12;
+                const monthlyRate = annualRate / 12;
+                if (monthlyRate === 0) {
+                    balance = principal;
+                } else {
+                    balance = P * Math.pow(1 + monthlyRate, months) + monthlyAdd * (Math.pow(1 + monthlyRate, months) - 1) / monthlyRate;
+                }
+            }
+            balanceData.push(Math.round(balance));
         }
-    } else {
-        const months = i * 12;
-        const monthlyRate = annualRate / 12;
-        if (monthlyRate === 0) {
-            balance = principal;
-        } else {
-            balance = P * Math.pow(1 + monthlyRate, months) +
-                      monthlyAdd * (Math.pow(1 + monthlyRate, months) - 1) / monthlyRate;
-        }
-    }
-    balanceData.push(Math.round(balance));
-}
 
 // 销毁旧图表防止重叠
 if (growthChart) {
