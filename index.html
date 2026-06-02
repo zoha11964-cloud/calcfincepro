@@ -1,3 +1,4 @@
+<!-- ==========第一段HEAD開頭========== -->
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
@@ -360,7 +361,7 @@
         input:focus, select:focus {
             outline: none;
             border-color: #2563eb;
-            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15));
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
         }
 
         .calc-main-btn {
@@ -738,6 +739,9 @@
         }
     </style>
 </head>
+<!-- ==========第一段HEAD結尾========== -->
+
+<!-- ==========第二段BODY開頭========== -->
 <body>
 
 <header>
@@ -1077,6 +1081,9 @@
   <a href="https://text.calcfincepro.com/">Text Tools</a>
   <a href="https://convert.calcfincepro.com/">Convert Tools</a>
 </div>
+<!-- ==========第二段BODY結尾========== -->
+
+<!-- ==========第三段JS+FOOTER開頭========== -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     let growthChart = null;
@@ -1147,136 +1154,147 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const labels = [];
         const balanceData = [];
-        const principalData = [];
+        const principalData = []
+const labels = [];
+const balanceData = [];
+const principalData = [];
 
-        for (let i = 0; i <= years; i++) {
-            labels.push(i + 'Y');
-            const totalMonths = i * 12;
-            const principal = P + monthlyAdd * totalMonths;
-            principalData.push(Math.round(principal));
+for (let i = 0; i <= years; i++) {
+    labels.push(i + 'Y');
+    const totalMonths = i * 12;
+    const principal = P + monthlyAdd * totalMonths;
+    principalData.push(Math.round(principal));
 
-            let balance = P;
-            if (compoundTimes === 1) {
-                if (annualRate === 0) {
-                    balance = principal;
-                } else {
-                    balance = P * Math.pow(1 + annualRate, i) +
-                              monthlyAdd * 12 * (Math.pow(1 + annualRate, i) - 1) / annualRate;
-                }
-            } else {
-                const months = i * 12;
-                const monthlyRate = annualRate / 12;
-                if (monthlyRate === 0) {
-                    balance = principal;
-                } else {
-                    balance = P * Math.pow(1 + monthlyRate, months) +
-                              monthlyAdd * (Math.pow(1 + monthlyRate, months) - 1) / monthlyRate;
-                }
-            }
-            balanceData.push(Math.round(balance));
+    let balance = P;
+    if (compoundTimes === 1) {
+        if (annualRate === 0) {
+            balance = principal;
+        } else {
+            balance = P * Math.pow(1 + annualRate, i) +
+                      monthlyAdd * 12 * (Math.pow(1 + annualRate, i) - 1) / annualRate;
         }
-
-        if (growthChart) {
-            growthChart.destroy();
+    } else {
+        const months = i * 12;
+        const monthlyRate = annualRate / 12;
+        if (monthlyRate === 0) {
+            balance = principal;
+        } else {
+            balance = P * Math.pow(1 + monthlyRate, months) +
+                      monthlyAdd * (Math.pow(1 + monthlyRate, months) - 1) / monthlyRate;
         }
-
-        const ctx = document.getElementById('growthChart').getContext('2d');
-        growthChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [
-                    {
-                        label: 'Total Balance',
-                        data: balanceData,
-                        borderColor: '#2563eb',
-                        backgroundColor: 'rgba(37,99,235,0.1)',
-                        fill: true,
-                        tension: 0.3,
-                        borderWidth: 2
-                    },
-                    {
-                        label: 'Total Contributions',
-                        data: principalData,
-                        borderColor: '#059669',
-                        backgroundColor: 'rgba(5,150,105,0.05)',
-                        fill: false,
-                        tension: 0.3,
-                        borderWidth: 1.5
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                        labels: {
-                            boxWidth: 12,
-                            font: { size: 12 }
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            callback: function(value) {
-                                return '$' + value.toLocaleString();
-                            }
-                        }
-                    }
-                }
-            }
-        });
     }
+    balanceData.push(Math.round(balance));
+}
 
-    calcBtn.addEventListener('click', calculateTotal);
+// 销毁旧图表防止重叠
+if (growthChart) {
+    growthChart.destroy();
+}
 
-    copyResult.addEventListener('click', function() {
-        const text = `Final Value: ${futureVal.textContent}\nTotal Contributions: ${totalContrib.textContent}\nTotal Interest: ${totalInterest.textContent}\nInterest Ratio: ${returnPct.textContent}`;
-        navigator.clipboard.writeText(text).then(() => {
-            const oldText = copyResult.innerHTML;
-            copyResult.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
-            setTimeout(() => { copyResult.innerHTML = oldText; }, 1500);
-        });
-    });
-
-    document.querySelectorAll('.quick-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const key = this.dataset.preset;
-            const data = presetConfig[key];
-            initialInv.value = data.initial;
-            intRate.value = data.rate;
-            invYears.value = data.years;
-            monthDeposit.value = data.monthly;
-            topHookLink.textContent = data.topText;
-            topHookLink.href = data.link;
-            bottomHookLink.textContent = data.bottomText;
-            bottomHookLink.href = data.link;
-            calculateTotal();
-        });
-    });
-
-    document.querySelectorAll('.faq-question').forEach(q => {
-        q.addEventListener('click', () => {
-            const ans = q.nextElementSibling;
-            const icon = q.querySelector('i');
-            ans.classList.toggle('show');
-            q.classList.toggle('active');
-            if (ans.classList.contains('show')) {
-                icon.classList.remove('fa-chevron-down');
-                icon.classList.add('fa-chevron-up');
-            } else {
-                icon.classList.remove('fa-chevron-up');
-                icon.classList.add('fa-chevron-down');
+// 初始化新图表
+const ctx = document.getElementById('growthChart').getContext('2d');
+growthChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: labels,
+        datasets: [
+            {
+                label: 'Total Balance',
+                data: balanceData,
+                borderColor: '#2563eb',
+                backgroundColor: 'rgba(37,99,235,0.1)',
+                fill: true,
+                tension: 0.3,
+                borderWidth: 2
+            },
+            {
+                label: 'Total Contributions',
+                data: principalData,
+                borderColor: '#059669',
+                backgroundColor: 'transparent',
+                fill: false,
+                tension: 0.3,
+                borderWidth: 1.5
             }
-        });
-    });
+        ]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                position: 'top',
+                labels: {
+                    boxWidth: 12,
+                    font: { size: 12 }
+                }
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                ticks: {
+                    callback: function(value) {
+                        return '$' + value.toLocaleString();
+                    }
+                }
+            }
+        }
+    }
+});
+}
 
-    calculateTotal();
+// 绑定计算按钮
+calcBtn.addEventListener('click', calculateTotal);
+
+// 复制结果功能
+copyResult.addEventListener('click', function() {
+    const text = `Final Value: ${futureVal.textContent}\nTotal Contributions: ${totalContrib.textContent}\nTotal Interest: ${totalInterest.textContent}\nInterest Ratio: ${returnPct.textContent}`;
+    navigator.clipboard.writeText(text).then(() => {
+        const oldText = copyResult.innerHTML;
+        copyResult.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+        setTimeout(() => { copyResult.innerHTML = oldText; }, 1500);
+    });
+});
+
+// 快捷场景按钮
+document.querySelectorAll('.quick-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const key = this.dataset.preset;
+        const data = presetConfig[key];
+        initialInv.value = data.initial;
+        intRate.value = data.rate;
+        invYears.value = data.years;
+        monthDeposit.value = data.monthly;
+        topHookLink.href = data.link;
+        topHookLink.innerHTML = `<i class="fa-solid fa-lightbulb"></i> ${data.topText}`;
+        bottomHookLink.href = data.link;
+        bottomHookLink.innerHTML = `<i class="fa-solid fa-book-open"></i> ${data.bottomText}`;
+        calculateTotal();
+    });
+});
+
+// FAQ 折叠功能
+document.querySelectorAll('.faq-question').forEach(q => {
+    q.addEventListener('click', () => {
+        const ans = q.nextElementSibling;
+        const icon = q.querySelector('i');
+        ans.classList.toggle('show');
+        q.classList.toggle('active');
+        if (ans.classList.contains('show')) {
+            icon.classList.remove('fa-chevron-down');
+            icon.classList.add('fa-chevron-up');
+        } else {
+            icon.classList.remove('fa-chevron-up');
+            icon.classList.add('fa-chevron-down');
+        }
+    });
+});
+
+// 页面载入自动计算
+calculateTotal();
 });
 </script>
+<!-- ==========第三段JS+FOOTER結尾========== -->
 </body>
 </html>
