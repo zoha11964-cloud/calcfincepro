@@ -1288,6 +1288,12 @@ document.querySelectorAll('.faq-question').forEach(q => {
 
 // 页面载入自动计算
 calculateTotal();
+
+// 廣告iframe自動填入廣告源
+document.querySelectorAll('iframe[data-ad-key]').forEach(iframe=>{
+  const key = iframe.dataset.adKey;
+  iframe.src = `https://hdfastad.com/ad.php?key=${key}`;
+});
 });
 </script>
 <!-- ==========第三段JS+FOOTER結尾========== -->
