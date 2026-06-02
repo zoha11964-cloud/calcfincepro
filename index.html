@@ -380,7 +380,7 @@
         input:focus, select:focus {
             outline: none;
             border-color: #2563eb;
-            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15));
         }
 
         .calc-main-btn {
@@ -631,7 +631,7 @@
             background: #fff;
             padding: 15px;
             border-radius: 6px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 6 rgba(0,0,0,0.05);
         }
         .tool-header {
             display: flex;
@@ -930,21 +930,21 @@
                         <div class="future-value-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
                     </div>
 
-<div class="result-grid">
-    <div class="result-small-card">
-        <div class="result-small-label">TOTAL CONTRIBUTIONS</div>
-        <div class="result-small-value" id="totalContrib">$0.00</div>
-    </div>
-    <div class="result-small-card">
-        <div class="result-small-label">TOTAL INTEREST EARNED</div>
-        <div class="result-small-value" id="totalInterest">$0.00</div>
-    </div>
-    <!-- 👇 补上 .result-small-card，三列对齐、样式正常 -->
-    <div class="result-small-card">
-        <div class="result-small-label">TOTAL RETURN RATIO</div>
-        <div class="result-small-value blue" id="returnPct">0%</div>
-    </div>
-</div>
+                    <div class="result-grid">
+                        <div class="result-small-card">
+                            <div class="result-small-label">TOTAL CONTRIBUTIONS</div>
+                            <div class="result-small-value" id="totalContrib">$0.00</div>
+                        </div>
+                        <div class="result-small-card">
+                            <div class="result-small-label">TOTAL INTEREST EARNED</div>
+                            <div class="result-small-value" id="totalInterest">$0.00</div>
+                        </div>
+                        <div class="result-small-card">
+                            <div class="result-small-label">TOTAL RETURN RATIO</div>
+                            <div class="result-small-value blue" id="returnPct">0%</div>
+                        </div>
+                    </div>
+
                     <button class="copy-btn" id="copyResult"><i class="fa-solid fa-copy"></i> Copy Result</button>
 
                     <div class="dynamic-hook">
@@ -1327,10 +1327,6 @@ document.addEventListener('DOMContentLoaded', function() {
     calculateTotal();
 });
 </script>
-
-<!-- ===================== POPUNDER 廣告 已插入 ===================== -->
-<script src="https://pl29619767.effectivecpmnetwork.com/03/d7/78/03d7784af424f8225565f57d71310574.js"></script>
-<!-- ===================== POPUNDER 結束 ===================== -->
 
 <!-- ==========第三段JS結尾【JS全部完畢】========== -->
 </body>
