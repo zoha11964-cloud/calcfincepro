@@ -930,20 +930,21 @@
                         <div class="future-value-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
                     </div>
 
-                    <div class="result-grid">
-                        <div class="result-small-card">
-                            <div class="result-small-label">TOTAL CONTRIBUTIONS</div>
-                            <div class="result-small-value" id="totalContrib">$0.00</div>
-                        </div>
-                        <div class="result-small-card">
-                            <div class="result-small-label">TOTAL INTEREST EARNED</div>
-                            <div class="result-small-value" id="totalInterest">$0.00</div>
-                        </div>
-                        <div class="result-small-label">
-                            <div class="result-small-value blue" id="returnPct">0%</div>
-                        </div>
-                    </div>
-
+<div class="result-grid">
+    <div class="result-small-card">
+        <div class="result-small-label">TOTAL CONTRIBUTIONS</div>
+        <div class="result-small-value" id="totalContrib">$0.00</div>
+    </div>
+    <div class="result-small-card">
+        <div class="result-small-label">TOTAL INTEREST EARNED</div>
+        <div class="result-small-value" id="totalInterest">$0.00</div>
+    </div>
+    <!-- 👇 补上 .result-small-card，三列对齐、样式正常 -->
+    <div class="result-small-card">
+        <div class="result-small-label">TOTAL RETURN RATIO</div>
+        <div class="result-small-value blue" id="returnPct">0%</div>
+    </div>
+</div>
                     <button class="copy-btn" id="copyResult"><i class="fa-solid fa-copy"></i> Copy Result</button>
 
                     <div class="dynamic-hook">
