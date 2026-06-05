@@ -17,20 +17,12 @@
 
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
-    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js" defer></script>
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5761005665703697" crossorigin="anonymous"></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-70W3ZXHHPY"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-70W3ZXHHPY', {send_page_view: false});
     </script>
 
     <script type="application/ld+json">
@@ -72,14 +64,7 @@
         }
 
         .ad-slot {
-            background: #f8fafc;
-            text-align: center;
-            padding: 8px;
-            border-radius: 6px;
-            color: #64748b;
-            font-size: 13px;
-            margin: 15px 0;
-            display: none;
+            display: none !important;
         }
 
         header {
@@ -155,7 +140,7 @@
                 align-items: start;
             }
             .ad-left, .ad-right {
-                display: block;
+                display: none !important;
             }
         }
         @media (max-width: 991px) {
@@ -163,7 +148,7 @@
                 display: block;
             }
             .ad-left, .ad-right {
-                display: none;
+                display: none !important;
             }
         }
 
@@ -368,7 +353,7 @@
         input:focus, select:focus {
             outline: none;
             border-color: #2563eb;
-            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15));
         }
 
         .calc-main-btn {
@@ -778,12 +763,10 @@
 </div>
 
 <div class="container">
-    <div class="ad-slot ad-top">Google Ads (Top)</div>
 </div>
 
 <div class="page-wrap">
     <aside class="ad-left">
-        <div class="ad-slot">Left Side Ad</div>
     </aside>
 
     <main>
@@ -861,17 +844,6 @@
                     <i class="fa-solid fa-arrows-rotate"></i> Calculate Now
                 </button>
 
-                <!-- 🔥 TinyAdz 廣告容器（我幫你放好了） -->
-                <div ta-ad-container="" style="margin: 12px 0;"></div>
-
-                <!--第一處廣告：Calculate Now下方｜居中、無框透明底、Google彩色logo-->
-                <div style="padding:12px;margin:10px 0;text-align:center;">
-                    <p style="margin:0 0 6px 0;font-size:14px;">Quick Research on Investment</p>
-                    <a href="https://omg10.com/4/11093914" target="_blank" style="color:#1a73e8;font-size:15px;text-decoration:none;">
-                        <img src="https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_clr_74x24px.svg" alt="Google" style="height:18px;vertical-align:middle;margin-right:6px;">Go to Google Search
-                    </a>
-                </div>
-
                 <div class="result-box" id="resultArea">
                     <h3 class="result-title">Your Investment Growth Results</h3>
                     <div class="result-subtitle">Based on compounding annually for <span id="resultYears">20</span> years.</div>
@@ -900,14 +872,6 @@
                     </div>
 
                     <button class="copy-btn" id="copyResult"><i class="fa-solid fa-copy"></i> Copy Result</button>
-
-                    <!--第二處廣告：Copy Result下方｜同樣居中無框+Google標誌-->
-                    <div style="padding:12px;margin:10px 0;text-align:center;">
-                        <p style="margin:0 0 6px 0;font-size:14px;">Quick Research on Investment</p>
-                        <a href="https://omg10.com/4/11093914" target="_blank" style="color:#1a73e8;font-size:15px;text-decoration:none;">
-                            <img src="https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_clr_74x24px.svg" alt="Google" style="height:18px;vertical-align:middle;margin-right:6px;">Go to Google Search
-                        </a>
-                    </div>
 
                     <div class="dynamic-hook">
                         <a id="topHookLink" href="/guides.html#retirement">
@@ -1063,12 +1027,10 @@
     </main>
 
     <aside class="ad-right">
-        <div class="ad-slot">Right Side Ad</div>
     </aside>
 </div>
 
 <div class="container">
-    <div class="ad-slot ad-bottom">Google Ads (Bottom)</div>
 </div>
 
 <footer>
@@ -1286,6 +1248,5 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <!-- ==========第三段JS結尾【JS全部完畢】========== -->
-<script src="https://cdn.apitiny.net/scripts/v2.0/main.js" data-site-id="6a202b005b4288c24bedf26f" data-test-mode="false"></script>
 </body>
 </html>
